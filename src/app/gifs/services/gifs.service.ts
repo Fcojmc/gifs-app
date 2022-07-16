@@ -14,7 +14,14 @@ export class GifsService {
   }
 
   buscarGifs(query: string): void {
-    this._historial.unshift(query);
+
+    query = query.trim().toLowerCase();
+
+    if (!this._historial.includes(query)) {
+      this._historial.unshift(query);
+      this._historial = this._historial.splice(0, 11);
+    }
+
     console.log(this._historial);
   }
 
